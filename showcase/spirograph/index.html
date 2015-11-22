@@ -1,0 +1,17 @@
+<div class="jumbotron">
+	<div class="page-header">
+		<h1>Spirograph</h1>
+	</div>
+	<hr />
+	<div>
+		<button class="btn btn-success" ng-click="play()" ng-show="!drawing">Play</button>
+		<button class="btn btn-danger" ng-click="stop()" ng-show="drawing">Stop</button>
+	</div>
+	<br />
+	<div>
+		<canvas id="spirograph" width="100" height="100"
+			style="border: 1px solid #d3d3d3;">
+	    	Your browser does not support the HTML5 canvas tag.
+	    </canvas>
+	</div>
+</div>

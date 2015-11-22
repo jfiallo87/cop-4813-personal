@@ -1,0 +1,68 @@
+<div class="jumbotron">
+	<div class="page-header">
+		<h1>Gravity Calculator</h1>
+	</div>
+	<hr />
+	<h5>G = {{G}}</h5>
+	<br />
+	<div>
+		<fieldset>
+			<legend>Masses</legend>
+			<div>
+				<label>m1:</label> <input type="number" ng-model="m1"></input> <span>x
+					1,000,000,000</span>
+
+			</div>
+			<div>
+				<label>m2:</label> <input type="number" ng-model="m2"></input> <span>x
+					1,000,000,000</span>
+
+			</div>
+		</fieldset>
+	</div>
+	<br />
+	<div>
+		<fieldset>
+			<legend>Distance(s)</legend>
+			<div style="margin-bottom: 5px;" ng-repeat="d in distances">
+				<label>d{{$index + 1}}:</label> <input type="number"
+					ng-model="d.value"></input>
+				<button class="btn-xs btn-danger" ng-click="removeDistance($index)">Remove</button>
+			</div>
+			<div>
+				<label>d{{distances.length + 1}}:</label> <input type="number"
+					placeholder="Add new distance" ng-model="newDistance"></input>
+				<button class="btn-xs btn-success" ng-click="addNewDistance()">Add</button>
+			</div>
+		</fieldset>
+	</div>
+	<br />
+	<div>
+		<button class="btn btn-primary" ng-click="calculateGravity()">Calculate
+			Gravity</button>
+	</div>
+	<br />
+	<div>
+		<table class="table table-striped table-bordered">
+			<caption>Gravity Result(s)</caption>
+			<thead>
+				<tr>
+					<th>#</th>
+					<th>Distance</th>
+					<th>Gravity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr ng-repeat="f in F">
+					<td>{{$index + 1}}</td>
+					<td>{{f[0]}}</td>
+					<td>{{f[1]}}</td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<br />
+	<div>
+		<highchart id="gravityChart" config="gravity.chart"></highchart>
+	</div>
+</div>

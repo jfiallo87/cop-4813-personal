@@ -1,0 +1,28 @@
+<div class="jumbotron">
+	<div class="page-header">
+		<h1>Guess the Card</h1>
+	</div>
+	<hr />
+	<p>
+		Let's play a game of Guess the Card! There are {{model.deck.length}} cards in the deck, can you guess the current card?
+	</p>
+	<div class="center-block" style="width: 150px; margin-bottom: 10px;" align="center">
+		<h6>Successful Guesses: {{model.successCount}}
+		<div ng-if="model.deck.length <= 0" align="center">
+			<h6>Game Over</h6>
+			<button ng-click="setUp()" class="btn btn-primary">Play Again</button>
+		</div>
+	</div>
+	<div ng-if="model.deck.length > 0">
+		<div class="center-block" style="border: 1px solid; width: 100px; height: 150px;" align="center">
+			<img ng-src="{{currentCardImg()}}" data-drag="true" data-jqyoui-options="{revert: 'invalid'}" ng-model="model.currentCard" jqyoui-draggable="{animate: true}" style="width: 95px; height: 145px;">
+		</div>
+		<div ng-if="!model.currentCard.revealed" class="center-block" style="width: 200px; margin-top: 10px;" align="center">
+			<select ng-options="card.name for card in model.deck track by card.id" ng-model="model.currentGuess"></select>
+			<button ng-click="guess()" class="btn btn-primary btn-xs">Guess</button>
+		</div>
+		<div data-drop="true" ng-model="model.discardedDeck" jqyoui-droppable="{onDrop: 'discard'}" class="center-block" style="border: 1px solid; width: 100px; height: 150px; margin-top: 10px;" align="center">
+			<h5>Discard...</h5>
+		</div>
+	</div>
+</div>

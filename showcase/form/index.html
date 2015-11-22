@@ -1,0 +1,211 @@
+<style>
+form input.ng-invalid.ng-touched, form.ng-submitted input.ng-invalid {
+	border-color: red;
+}
+
+form textarea.ng-invalid.ng-touched, form.ng-submitted textarea.ng-invalid
+	{
+	border-color: red;
+}
+
+.error-message {
+	color: red;
+	font-size: 10px;
+	font-weight: bold;
+}
+
+.warning-message {
+	color: orange;
+	font-size: 10px;
+}
+</style>
+<div data-ng-show="step == 1" class="jumbotron">
+	<h1>Input Form</h1>
+	<hr />
+	<form data-ng-submit="form.$valid && next()" id="form" name="form"
+		novalidate>
+		<div class="form-group">
+			<label for="firstName">First Name</label> <input required
+				data-ng-model="model.firstName" type="text" class="form-control"
+				id="firstName" name="firstName" placeholder="Enter your first name"></input>
+			<div data-ng-show="form.$submitted || form.firstName.$touched">
+				<span data-ng-show="form.firstName.$error.required"
+					class="error-message">First Name is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="lastName">Last Name</label> <input required
+				data-ng-model="model.lastName" type="text" class="form-control"
+				id="lastName" name="lastName" placeholder="Enter your last name"></input>
+			<div data-ng-show="form.$submitted || form.lastName.$touched">
+				<span data-ng-show="form.lastName.$error.required"
+					class="error-message">Last Name is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="address">Street Address</label> <input required
+				data-ng-model="model.address" type="text" class="form-control"
+				id="address" name="address" placeholder="Enter your street address"></input>
+			<div data-ng-show="form.$submitted || form.address.$touched">
+				<span data-ng-show="form.address.$error.required"
+					class="error-message">Street Address is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="city">City</label> <input required
+				data-ng-model="model.city" type="text" class="form-control"
+				id="city" name="city" placeholder="Enter your city"></input>
+			<div data-ng-show="form.$submitted || form.city.$touched">
+				<span data-ng-show="form.city.$error.required" class="error-message">City
+					is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="state">State</label> <select data-ng-model="model.state"
+				class="form-control" id="state" name="state">
+				<option value="AL">Alabama</option>
+				<option value="AK">Alaska</option>
+				<option value="AZ">Arizona</option>
+				<option value="AR">Arkansas</option>
+				<option value="CA">California</option>
+				<option value="CO">Colorado</option>
+				<option value="CT">Connecticut</option>
+				<option value="DE">Delaware</option>
+				<option value="DC">District Of Columbia</option>
+				<option value="FL">Florida</option>
+				<option value="GA">Georgia</option>
+				<option value="HI">Hawaii</option>
+				<option value="ID">Idaho</option>
+				<option value="IL">Illinois</option>
+				<option value="IN">Indiana</option>
+				<option value="IA">Iowa</option>
+				<option value="KS">Kansas</option>
+				<option value="KY">Kentucky</option>
+				<option value="LA">Louisiana</option>
+				<option value="ME">Maine</option>
+				<option value="MD">Maryland</option>
+				<option value="MA">Massachusetts</option>
+				<option value="MI">Michigan</option>
+				<option value="MN">Minnesota</option>
+				<option value="MS">Mississippi</option>
+				<option value="MO">Missouri</option>
+				<option value="MT">Montana</option>
+				<option value="NE">Nebraska</option>
+				<option value="NV">Nevada</option>
+				<option value="NH">New Hampshire</option>
+				<option value="NJ">New Jersey</option>
+				<option value="NM">New Mexico</option>
+				<option value="NY">New York</option>
+				<option value="NC">North Carolina</option>
+				<option value="ND">North Dakota</option>
+				<option value="OH">Ohio</option>
+				<option value="OK">Oklahoma</option>
+				<option value="OR">Oregon</option>
+				<option value="PA">Pennsylvania</option>
+				<option value="RI">Rhode Island</option>
+				<option value="SC">South Carolina</option>
+				<option value="SD">South Dakota</option>
+				<option value="TN">Tennessee</option>
+				<option value="TX">Texas</option>
+				<option value="UT">Utah</option>
+				<option value="VT">Vermont</option>
+				<option value="VA">Virginia</option>
+				<option value="WA">Washington</option>
+				<option value="WV">West Virginia</option>
+				<option value="WI">Wisconsin</option>
+				<option value="WY">Wyoming</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label for="city">Zip Code</label> <input required
+				data-ng-pattern="/^\D\d{5}\D|\d{5}$/" data-ng-model="model.zip"
+				type="text" class="form-control" id="zip" name="zip"
+				placeholder="Enter your zip code (ex. 99999)"></input>
+			<div data-ng-show="form.$submitted || form.zip.$touched">
+				<span data-ng-show="form.zip.$error.required" class="error-message">Zip
+					Code is required</span> <span data-ng-show="form.zip.$error.pattern"
+					class="error-message">Invalid Zip Code</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="phone">Phone Number</label> <input required
+				data-ng-model="model.phone" ui-mask="(999) 999-9999" type="text"
+				class="form-control" id="phone" name="phone"></input>
+			<div data-ng-show="form.$submitted || form.phone.$touched">
+				<span data-ng-show="form.phone.$error.required"
+					class="error-message">Phone Number is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="email">Email</label> <input required
+				data-ng-model="model.email" type="email" class="form-control"
+				id="email" name="email" placeholder="Enter your email"></input>
+			<div data-ng-show="form.$submitted || form.email.$touched">
+				<span data-ng-show="form.email.$error.required"
+					class="error-message">Email is required</span> <span
+					data-ng-show="form.email.$error.email" class="error-message">Invalid
+					Email</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="birthdate">Birth Date</label> <input required
+				max="{{currentDate | date:'yyyy-MM-dd'}}"
+				data-ng-model="model.birthdate" type="date" class="form-control"
+				id="birthdate" name="birthdate" placeholder="Enter your birth date"></input>
+			<div data-ng-show="form.$submitted || form.birthdate.$touched">
+				<span data-ng-show="form.birthdate.$error.required"
+					class="error-message">Birth Date is required</span> <span
+					data-ng-show="form.birthdate.$error.date || form.birthdate.$error.max"
+					class="error-message">Invalid Birth Date</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="message">Message</label>
+			<textarea required data-ng-model="model.message" rows="3"
+				class="form-control" id="message" name="message"
+				placeholder="Enter a message"></textarea>
+			<div data-ng-show="form.$submitted || form.message.$touched">
+				<span data-ng-show="form.message.$error.required"
+					class="error-message">Message is required</span>
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="captcha">{{captchas[cq].q}}</label> <input required
+				data-ng-pattern="captchas[cq].a" data-ng-model="ca" type="text"
+				class="form-control" id="captcha" name="captcha"
+				placeholder="ex. Saturday, Sunday, Monday, etc."></input>
+			<div data-ng-show="form.$submitted || form.captcha.$touched">
+				<span
+					data-ng-show="form.captcha.$error.required || form.captcha.$error.pattern"
+					class="error-message">Invalid Captcha</span>
+			</div>
+		</div>
+		<input class="btn btn-primary" type="submit" value="Next" />
+	</form>
+</div>
+<div data-ng-show="step == 2" class="jumbotron">
+	<h1>Confirmation</h1>
+	<hr />
+	<p>
+		<strong>Name:</strong> <em>{{model.firstName}} {{model.lastName}}</em>
+	</p>
+	<p>
+		<strong>Address:</strong> <em>{{model.address}}, {{model.city}},
+			{{model.state}} {{model.zip}}</em>
+	</p>
+	<p>
+		<strong>Phone Number:</strong> <em>{{model.phone | tel}}</em>
+	</p>
+	<p>
+		<strong>Email:</strong> <em>{{model.email}}</em>
+	</p>
+	<p>
+		<strong>Birth Date:</strong> <em>{{model.birthdate | date}}</em>
+	</p>
+	<p>
+		<strong>Message:</strong> <em data-ng-bind-html="model.message | br"></em>
+	</p>
+	<input data-ng-click="back()" class="btn btn-default" type="button"
+		value="Back" /> <a data-ng-href="{{mailto}}" class="btn btn-primary">Send
+		Email</a> <a data-ng-href="#/" class="btn btn-success">Done</a>
+</div>
